@@ -1,0 +1,40 @@
+<div>
+    <h1 class="clr">Wheather in your city </h1>        
+    <input style="height:25px;" [(ngModel)]="location" (keyup)="onRegionEnter()" class="form-control"
+    ngx-google-places-autocomplete placeholder="City"
+    (onAddressChange)="handleAddressChange($event)" type="text">        
+    <button class="btnclr" type="button" (click)="getWeatherForcast($event)"><i class="fa fa-question-circle" style="font-size:24px;color:white"></i>Search</button>
+</div>
+
+<div style="display: inline-block;" *ngFor="let weather of weatherReport | slice:0:5">
+    <table border="1px" width="250px" style="text-align: center;">
+        <thead>
+            <tr bgcolor="red">
+                <th colspan="2">Date: {{myDate | date:'dd-MM-yy'}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr bgcolor="lightgray">
+                <td colspan="2" align="center">Temperature</td>
+            </tr>
+            <tr bgcolor="lightgray">
+                <td>Min</td>
+                <td>Max</td>
+            </tr>
+            <tr bgcolor="lightgray">
+                <td>{{weatherReport[0].main.temp_min}}</td>
+                <td>{{weatherReport[0].main.temp_min}}</td>
+            </tr>
+            <tr>
+                <td>humidity</td>
+                <td>{{weatherReport[0].main.humidity}}</td>
+            </tr>
+            <tr>
+                <td>Pressuer</td>
+                <td>{{weatherReport[0].main.pressure}}</td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+
+<router-outlet></router-outlet>
